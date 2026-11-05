@@ -1,0 +1,79 @@
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": false,
+
+    "meta": {
+      "rev": {
+        ".write": "auth != null",
+        ".validate": "newData.isString() && newData.val().length < 64"
+      }
+    },
+
+    "owners": {
+      "$uid": {
+        ".write": "auth != null && auth.uid === $uid && newData.exists() && (!data.exists() || data.val() === newData.val())",
+        ".validate": "newData.isString() && newData.val().length >= 2 && newData.val().length <= 16"
+      }
+    },
+
+    "users": {
+      "$name": {
+        ".write": "auth != null && newData.exists() && root.child('owners').child(auth.uid).val() !== null && (!data.exists() ? (newData.val().contains('\"owner\":\"' + auth.uid + '\"') && newData.parent().parent().child('owners').child(auth.uid).val() === $name) : (data.val().contains('\"owner\":\"' + auth.uid + '\"') && newData.val().contains('\"owner\":\"' + auth.uid + '\"')))",
+        ".validate": "newData.isString() && newData.val().length < 4000"
+      }
+    },
+
+    "requests": {
+      "$key": {
+        ".write": "auth != null && root.child('owners').child(auth.uid).val() !== null && (data.exists() ? (data.val().contains('\"from\":\"' + root.child('owners').child(auth.uid).val() + '\"') || data.val().contains('\"to\":\"' + root.child('owners').child(auth.uid).val() + '\"')) : (newData.val().beginsWith('{\"from\":\"' + root.child('owners').child(auth.uid).val() + '\",\"') && newData.val().replace('\"from\":\"', '').length === newData.val().length - 8))",
+        ".validate": "!newData.exists() || (newData.isString() && newData.val().length < 400)"
+      }
+    },
+
+    "messages": {
+      "$id": {
+        ".write": "auth != null && root.child('owners').child(auth.uid).val() !== null && (data.exists() ? (!newData.exists() || newData.val().contains('en äldre bild har tagits bort')) : (newData.val().beginsWith('{\"from\":\"' + root.child('owners').child(auth.uid).val() + '\",\"') && newData.val().replace('\"from\":\"', '').length === newData.val().length - 8))",
+        ".validate": "!newData.exists() || (newData.isString() && newData.val().length < 80000)"
+      }
+    },
+
+    "points": {
+      "$id": {
+        ".write": "auth != null && root.child('owners').child(auth.uid).val() !== null && newData.exists()",
+        ".validate": "newData.isString() && newData.val().length < 600"
+      }
+    },
+
+    "challenges": {
+      "$id": {
+        ".write": "auth != null && root.child('owners').child(auth.uid).val() !== null && newData.exists() && (data.exists() ? data.val() === newData.val() : (newData.val().beginsWith('{\"from\":\"' + root.child('owners').child(auth.uid).val() + '\",\"') && newData.val().replace('\"from\":\"', '').length === newData.val().length - 8))",
+        ".validate": "newData.isString() && newData.val().length < 600"
+      }
+    },
+
+    "scores": {
+      "$sid": {
+        ".write": "auth != null && root.child('owners').child(auth.uid).val() !== null && (!data.exists() || data.val() === newData.val()) && newData.exists() && $sid.endsWith('~' + root.child('owners').child(auth.uid).val())",
+        ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() <= 5000"
+      }
+    },
+
+    "polls": {
+      "$id": {
+        ".write": "auth != null && root.child('owners').child(auth.uid).val() !== null && newData.exists() && (data.exists() ? data.val() === newData.val() : (newData.val().beginsWith('{\"by\":\"' + root.child('owners').child(auth.uid).val() + '\",\"') && newData.val().replace('\"by\":\"', '').length === newData.val().length - 6))",
+        ".validate": "newData.isString() && newData.val().length < 2000"
+      }
+    },
+
+    "votes": {
+      "$vid": {
+        ".write": "auth != null && root.child('owners').child(auth.uid).val() !== null && newData.exists() && $vid.endsWith('~' + root.child('owners').child(auth.uid).val())",
+        ".validate": "newData.isNumber() && newData.val() >= 0 && newData.val() < 20"
+      }
+    }
+  }
+}
+
+
+

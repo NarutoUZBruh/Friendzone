@@ -59,19 +59,33 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Core\Ui.cs" />
     <Compile Include="Assets\Scripts\Data\Accounts.cs" />
+    <Compile Include="Assets\Scripts\Data\CloudStore.cs" />
     <Compile Include="Assets\Scripts\Screens\AuthScreen.cs" />
+    <Compile Include="Assets\Scripts\MiniGames\WordList.cs" />
+    <Compile Include="Assets\Scripts\Core\EmojiArt.cs" />
     <Compile Include="Assets\Scripts\MiniGames\MiniGame.cs" />
     <Compile Include="Assets\Scripts\Screens\LeagueScreen.cs" />
     <Compile Include="Assets\Scripts\Screens\ChatScreen.cs" />
     <Compile Include="Assets\Scripts\Screens\ProfileScreen.cs" />
+    <Compile Include="Assets\Scripts\Core\AvatarArt.cs" />
+    <Compile Include="Assets\Scripts\MiniGames\MathRaceGame.cs" />
+    <Compile Include="Assets\Scripts\MiniGames\TriviaBank.cs" />
     <Compile Include="Assets\Scripts\Data\Store.cs" />
+    <Compile Include="Assets\Scripts\Core\AvatarView.cs" />
+    <Compile Include="Assets\Scripts\Data\Json.cs" />
     <Compile Include="Assets\Scripts\MiniGames\WordBattleGame.cs" />
     <Compile Include="Assets\Scripts\Data\Scoring.cs" />
+    <Compile Include="Assets\Scripts\MiniGames\UnoArt.cs" />
     <Compile Include="Assets\Scripts\Screens\HomeScreen.cs" />
+    <Compile Include="Assets\Scripts\Screens\AvatarScreen.cs" />
     <Compile Include="Assets\Scripts\App\AppController.cs" />
+    <Compile Include="Assets\Scripts\MiniGames\UnoGame.cs" />
     <Compile Include="Assets\Scripts\Screens\QuizScreen.cs" />
+    <Compile Include="Assets\Scripts\Data\Net.cs" />
+    <Compile Include="Assets\Scripts\Core\PhotoSticker.cs" />
     <Compile Include="Assets\Scripts\MiniGames\TriviaGame.cs" />
     <Compile Include="Assets\Scripts\Screens\FriendsScreen.cs" />
+    <Compile Include="Assets\Scripts\Data\CloudConfig.cs" />
     <Compile Include="Assets\Scripts\Screens\GamesScreen.cs" />
   </ItemGroup>
   <ItemGroup>
